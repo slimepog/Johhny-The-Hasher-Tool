@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
         SharedState state = new SharedState();
-        LinkedBlockingQueue<String> linesQueue = new LinkedBlockingQueue<String>();
+        LinkedBlockingQueue<String> linesQueue = new LinkedBlockingQueue    <String>();
         ProducerThreadRunnable producer = new ProducerThreadRunnable(state, linesQueue);
 
 
