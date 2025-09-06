@@ -1,9 +1,9 @@
 package hashCracker;
 
 public final class Consts {
-    public static final String filePath = "C:\\Users\\liav2\\Documents\\Johhny-The-Hasher-Tool\\Johnny\\src\\hashCracker\\rockyou.txt";
-    public static final String algorithm = "SHA-256";
-    public static final String givenHash = "08828389fc8041eb716229e8d6e43810208e4bc1794cd1de977ac16a7d52ee17";
-    public static final int numOfThreads = 64;
-    public static final String poisonPill = "END OF PROCESSING 1234567890!@#$%^&*() Inserting Pill: " + filePath;
+    public static final String FILE_PATH = "C:\\Users\\liav2\\Documents\\Johhny-The-Hasher-Tool\\Johnny\\src\\hashCracker\\rockyou.txt";
+    public static final String ALGORITHM = "SHA-512";
+    public static final String GIVEN_HASH = "9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043";
+    public static final int NUM_OF_THREADS = 64;
+    public static final String POISON_PILL = "END OF PROCESSING 1234567890!@#$%^&*() Inserting Pill: " + FILE_PATH;
 }

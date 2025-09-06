@@ -13,7 +13,7 @@ public class ProducerThreadRunnable implements Runnable{
     @Override
     public void run() {
         try {
-            LineReader reader = new LineReader(Consts.filePath);
+            LineReader reader = new LineReader(Consts.FILE_PATH);
             String line;
             while(!state.found.get()){
                 line = reader.readNextLine();
@@ -31,9 +31,9 @@ public class ProducerThreadRunnable implements Runnable{
 
     }
     public void insertPoisonPill(){
-        for(int i =0; i<Consts.numOfThreads; i++){
+        for(int i =0; i<Consts.NUM_OF_THREADS; i++){
             try {
-                this.linesQueue.put(Consts.poisonPill);
+                this.linesQueue.put(Consts.POISON_PILL);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

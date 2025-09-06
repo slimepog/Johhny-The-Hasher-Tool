@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Main {
+
     public static void main(String[] args) {
         long startTime = System.nanoTime();
         SharedState state = new SharedState();
@@ -15,10 +16,10 @@ public class Main {
         ProducerThreadRunnable producer = new ProducerThreadRunnable(state, linesQueue);
 
 
-        ExecutorService executor = Executors.newFixedThreadPool(Consts.numOfThreads);
+        ExecutorService executor = Executors.newFixedThreadPool(Consts.NUM_OF_THREADS);
         executor.execute(producer);
 
-        for (int i =0; i<Consts.numOfThreads; i++){
+        for (int i =0; i<Consts.NUM_OF_THREADS; i++){
             ConsumerThreadRunnable consumer = new ConsumerThreadRunnable(state, linesQueue);
             executor.execute(consumer);
         }
@@ -36,6 +37,7 @@ public class Main {
 
 
     }
+
 }
 
 

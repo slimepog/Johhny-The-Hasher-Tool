@@ -14,7 +14,7 @@ public class ConsumerThreadRunnable implements Runnable {
         this.state = state;
         this.linesQueue = linesQueue;
         try {
-            this.messageDigest = MessageDigest.getInstance(Consts.algorithm);
+            this.messageDigest = MessageDigest.getInstance(Consts.ALGORITHM);
         }
         catch (Exception NoSuchAlgorithmException){
             System.out.println("Hashing Algorithm not Found!");
@@ -27,11 +27,11 @@ public class ConsumerThreadRunnable implements Runnable {
             String nextLine = "", hash;
             while (true) {
                 nextLine = this.linesQueue.take();
-                if (Consts.poisonPill.equals(nextLine)) break;
+                if (Consts.POISON_PILL.equals(nextLine)) break;
                 hash = hashingFunctions.hashUsingAlgorithm(nextLine, this.messageDigest);
                 if (this.state.found.get()) break;
 
-                if (hash.equals(Consts.givenHash)) {
+                if (hash.equals(Consts.GIVEN_HASH)) {
                     printFound(hash, nextLine);
                     this.state.found.set(true);
                     break;
@@ -45,7 +45,7 @@ public class ConsumerThreadRunnable implements Runnable {
     }
     public static void printFound(String hash, String line){
         System.out.println("Hash Was Cracked!\nAlgorithm used: " +
-                Consts.algorithm +"\nHash: " + Consts.givenHash + " Value: " + line
+                Consts.ALGORITHM +"\nHash: " + Consts.GIVEN_HASH + " Value: " + line
                 + "\nThanks for Using Johnny the hasher");
     }
 }
