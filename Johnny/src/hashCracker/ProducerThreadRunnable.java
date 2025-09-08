@@ -1,6 +1,5 @@
 package hashCracker;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class ProducerThreadRunnable implements Runnable{
@@ -13,7 +12,7 @@ public class ProducerThreadRunnable implements Runnable{
     @Override
     public void run() {
         try {
-            LineReader reader = new LineReader(Consts.FILE_PATH);
+            LineReader reader = new LineReader(Consts.getConfig().filePath);
             String line;
             while(!state.found.get()){
                 line = reader.readNextLine();
@@ -31,7 +30,7 @@ public class ProducerThreadRunnable implements Runnable{
 
     }
     public void insertPoisonPill(){
-        for(int i =0; i<Consts.NUM_OF_THREADS; i++){
+        for(int i =0; i<Consts.getConfig().numOfThreads; i++){
             try {
                 this.linesQueue.put(Consts.POISON_PILL);
             } catch (Exception e) {

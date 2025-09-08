@@ -10,16 +10,19 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Main {
 
     public static void main(String[] args) {
+        String[] parsedArgs = supportingFunctions.parseArgs(args);
+        Config params = new Config(parsedArgs);
+        Consts.setConfig(params);
         long startTime = System.nanoTime();
         SharedState state = new SharedState();
         LinkedBlockingQueue<String> linesQueue = new LinkedBlockingQueue    <String>();
         ProducerThreadRunnable producer = new ProducerThreadRunnable(state, linesQueue);
 
 
-        ExecutorService executor = Executors.newFixedThreadPool(Consts.NUM_OF_THREADS);
+        ExecutorService executor = Executors.newFixedThreadPool(Consts.getConfig().numOfThreads);
         executor.execute(producer);
 
-        for (int i =0; i<Consts.NUM_OF_THREADS; i++){
+        for (int i =0; i<Consts.getConfig().numOfThreads; i++){
             ConsumerThreadRunnable consumer = new ConsumerThreadRunnable(state, linesQueue);
             executor.execute(consumer);
         }
@@ -37,6 +40,7 @@ public class Main {
 
 
     }
+
 
 }
 

@@ -2,7 +2,6 @@ package hashCracker;
 
 import java.security.MessageDigest;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class ConsumerThreadRunnable implements Runnable {
     private final SharedState state;
@@ -14,7 +13,7 @@ public class ConsumerThreadRunnable implements Runnable {
         this.state = state;
         this.linesQueue = linesQueue;
         try {
-            this.messageDigest = MessageDigest.getInstance(Consts.ALGORITHM);
+            this.messageDigest = MessageDigest.getInstance(Consts.getConfig().algorithm);
         }
         catch (Exception NoSuchAlgorithmException){
             System.out.println("Hashing Algorithm not Found!");
@@ -24,14 +23,15 @@ public class ConsumerThreadRunnable implements Runnable {
     @Override
     public void run() {
         try {
+            String givenHash = Consts.getConfig().giveHash;
             String nextLine = "", hash;
             while (true) {
                 nextLine = this.linesQueue.take();
                 if (Consts.POISON_PILL.equals(nextLine)) break;
-                hash = hashingFunctions.hashUsingAlgorithm(nextLine, this.messageDigest);
+                hash = supportingFunctions.hashUsingAlgorithm(nextLine, this.messageDigest);
                 if (this.state.found.get()) break;
 
-                if (hash.equals(Consts.GIVEN_HASH)) {
+                if (hash.equals(givenHash)) {
                     printFound(hash, nextLine);
                     this.state.found.set(true);
                     break;
@@ -45,7 +45,7 @@ public class ConsumerThreadRunnable implements Runnable {
     }
     public static void printFound(String hash, String line){
         System.out.println("Hash Was Cracked!\nAlgorithm used: " +
-                Consts.ALGORITHM +"\nHash: " + Consts.GIVEN_HASH + " Value: " + line
+                Consts.getConfig().algorithm +"\nHash: " + Consts.getConfig().giveHash + " Value: " + line
                 + "\nThanks for Using Johnny the hasher");
     }
 }
