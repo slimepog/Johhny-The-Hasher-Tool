@@ -36,6 +36,7 @@ public class ConsumerThreadRunnable implements Runnable {
                     this.state.found.set(true);
                     break;
                 }
+                this.state.processedLines.incrementAndGet();
             }
         }
         catch (Exception e){

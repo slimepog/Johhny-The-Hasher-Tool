@@ -23,11 +23,11 @@ public class Main {
         SharedState state = new SharedState();
         LinkedBlockingQueue<String> linesQueue = new LinkedBlockingQueue    <String>();
         ProducerThreadRunnable producer = new ProducerThreadRunnable(state, linesQueue);
-
+        ProgressMonitorThreadRunnable progressMonitor = new ProgressMonitorThreadRunnable(state, Consts.getConfig().totalLines);
 
         ExecutorService executor = Executors.newFixedThreadPool(Consts.getConfig().numOfThreads);
         executor.execute(producer);
-
+        executor.execute(progressMonitor);
         for (int i =0; i<Consts.getConfig().numOfThreads; i++){
             ConsumerThreadRunnable consumer = new ConsumerThreadRunnable(state, linesQueue);
             executor.execute(consumer);
