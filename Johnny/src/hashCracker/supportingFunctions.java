@@ -149,7 +149,7 @@ public class supportingFunctions {
         System.out.println("\nOptional arguments:");
         System.out.println("  --threads <n>        Number of worker threads (default: " + Consts.DEFAULT_NUM_OF_THREADS + ")");
         System.out.println("  --list-algorithms    List all supported MessageDigest algorithms");
-        System.out.println("  --help, -h           Show this help message and exit");
+        System.out.println("  --help,           Show this help message and exit");
         System.out.println("\nExamples:");
         System.out.println("  java hashCracker.Main --file rockyou.txt --algorithm SHA-256 --giveHash deadbeef...");
         System.out.println("  java hashCracker.Main --list-algorithms");
