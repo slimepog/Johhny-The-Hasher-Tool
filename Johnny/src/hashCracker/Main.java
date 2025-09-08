@@ -10,6 +10,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Main {
 
     public static void main(String[] args) {
+        if(supportingFunctions.checkForListAlgorithmFlag(args)){
+            supportingFunctions.listAlgorithmsAndCloseProgram();
+        }
         String[] parsedArgs = supportingFunctions.parseArgs(args);
         Config params = new Config(parsedArgs);
         Consts.setConfig(params);
@@ -40,7 +43,22 @@ public class Main {
 
 
     }
-
+/*
+list of algos:
+SHA3-512
+SHA-1
+SHA-384
+SHA3-384
+SHA-224
+SHA-512/256
+SHA-256
+MD2
+SHA-512/224
+SHA3-256
+SHA-512
+SHA3-224
+MD5
+ */
 
 }
 

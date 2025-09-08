@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HexFormat;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Set;
 
 public class supportingFunctions {
     /**
@@ -102,6 +103,23 @@ public class supportingFunctions {
         }
 
         return parsedArgs;
+    }
+
+    public static boolean checkForListAlgorithmFlag(String[] args){
+        for (String arg : args){
+            if(arg.equalsIgnoreCase("--list-algorithms")){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void listAlgorithmsAndCloseProgram(){
+        Set<String> algos = Security.getAlgorithms("MessageDigest");
+        System.out.println("Supported Algorithms are: ");
+        for(String algo : algos){
+            System.out.println("- " +algo);
+        }
+        System.exit(0);
     }
 
 
