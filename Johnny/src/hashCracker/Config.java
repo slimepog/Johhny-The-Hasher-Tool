@@ -10,14 +10,14 @@ public final class Config{
         this.filePath = args[0];
         this.algorithm = args[1];
         this.giveHash = args[2];
-        int temp;
+        int tempNumOfThreads;
         try {
-            temp = Integer.parseInt(args[3]);
+            tempNumOfThreads = Integer.parseInt(args[3]);
 
-            if (temp < 1) {
+            if (tempNumOfThreads < 1) {
                 throw new IllegalArgumentException("Number of threads must be 1 or more.");
             }
-            this.numOfThreads = temp;
+            this.numOfThreads = tempNumOfThreads;
 
 
         } catch (NumberFormatException e) {
