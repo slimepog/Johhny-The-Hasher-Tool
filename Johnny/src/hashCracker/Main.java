@@ -10,6 +10,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Main {
 
     public static void main(String[] args) {
+        if(supportingFunctions.checkForHelpFlag(args)){
+            supportingFunctions.printHelpAndExit();
+        }
         if(supportingFunctions.checkForListAlgorithmFlag(args)){
             supportingFunctions.listAlgorithmsAndCloseProgram();
         }

@@ -113,6 +113,14 @@ public class supportingFunctions {
         }
         return false;
     }
+    public static boolean checkForHelpFlag(String[] args){
+        for (String arg : args){
+            if(arg.equalsIgnoreCase("--help")){
+                return true;
+            }
+        }
+        return false;
+    }
     public static void listAlgorithmsAndCloseProgram(){
         Set<String> algos = Security.getAlgorithms("MessageDigest");
         System.out.println("Supported Algorithms are: ");
@@ -121,6 +129,34 @@ public class supportingFunctions {
         }
         System.exit(0);
     }
+    public static boolean hasHelpFlag(String[] args) {
+        for (String arg : args) {
+            if ("--help".equalsIgnoreCase(arg) || "-h".equalsIgnoreCase(arg)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void printHelpAndExit() {
+        System.out.println("📘 HashCracker Tool - Help\n");
+        System.out.println("Usage:");
+        System.out.println("  java hashCracker.Main --file <wordlist.txt> --algorithm <algo> --giveHash <hash> [--threads <n>]");
+        System.out.println("\nRequired arguments:");
+        System.out.println("  --file <path>        Path to the wordlist file (e.g. rockyou.txt)");
+        System.out.println("  --algorithm <algo>   Hashing algorithm to use (e.g. SHA-256, MD5)");
+        System.out.println("  --giveHash <hash>    The hash string you want to crack");
+        System.out.println("\nOptional arguments:");
+        System.out.println("  --threads <n>        Number of worker threads (default: " + Consts.DEFAULT_NUM_OF_THREADS + ")");
+        System.out.println("  --list-algorithms    List all supported MessageDigest algorithms");
+        System.out.println("  --help, -h           Show this help message and exit");
+        System.out.println("\nExamples:");
+        System.out.println("  java hashCracker.Main --file rockyou.txt --algorithm SHA-256 --giveHash deadbeef...");
+        System.out.println("  java hashCracker.Main --list-algorithms");
+        System.out.println("  java hashCracker.Main --help");
+        System.exit(0);
+    }
+
 
 
 
