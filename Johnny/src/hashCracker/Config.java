@@ -52,7 +52,7 @@ public final class Config{
             throw new IllegalArgumentException("Number of threads must be an integer.");
         }
 
-        // iterates through files and coutns number of lines
+        // iterates through files and counts number of lines
         try {
             this.totalLines = Files.lines(Paths.get(this.filePath), StandardCharsets.ISO_8859_1).count();
         } catch (IOException e) {
