@@ -23,7 +23,7 @@ public class ConsumerThreadRunnable implements Runnable {
     @Override
     public void run() {
         try {
-            String givenHash = Consts.getConfig().giveHash;
+            String givenHash = Consts.getConfig().givenHash;
             String nextLine = "", hash;
             while (true) {
                 nextLine = this.linesQueue.take();
@@ -46,7 +46,7 @@ public class ConsumerThreadRunnable implements Runnable {
     }
     public static void printFound(String hash, String line){
         System.out.println("Hash Was Cracked!\nAlgorithm used: " +
-                Consts.getConfig().algorithm +"\nHash: " + Consts.getConfig().giveHash + " Value: " + line
+                Consts.getConfig().algorithm +"\nHash: " + Consts.getConfig().givenHash + " Value: " + line
                 + "\nThanks for Using Johnny the hasher");
     }
 }
