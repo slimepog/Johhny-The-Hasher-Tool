@@ -18,6 +18,7 @@ public final class Config{
 
     public final String filePath;
     public final String algorithm;
+    public final String givenHash;
     public final int numOfThreads;
     public final long totalLines;
 
@@ -34,6 +35,7 @@ public final class Config{
 
         this.filePath = args[0];
         this.algorithm = args[1];
+        this.givenHash = args[2];
 
         //handles cases where user provided a String or an illegal amount for numOfThreads
         int tempNumOfThreads;
