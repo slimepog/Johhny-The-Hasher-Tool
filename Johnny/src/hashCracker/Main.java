@@ -95,10 +95,7 @@ public class Main {
         // tells the thread pool to stop accepting new consumer Tasks but to finish the current tasks
         consumerThreadExecutor.shutdown();
 
-        /*
-        tells the mainThread to wait until either all the tasks are finished or time expires.
-        however it is set to the max Long Value so program will basically wait until tasks finish
-         */
+        // Wait for all consumers to finish (effectively no timeout).
         try {
             consumerThreadExecutor.awaitTermination(Long.MAX_VALUE, java.util.concurrent.TimeUnit.NANOSECONDS);
         } catch (InterruptedException e) {
